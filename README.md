@@ -63,6 +63,16 @@ This is a manual that shows the detailed instructions to setup a development env
 9. make -j3
 10. make test
 11. make install
+## Install Pylon
+1. cd pylon-5.0.11*
+2. sudo tar -C /opt -xzf pylonSDK*.tar.gz
+## Install cpprest
+1. git clone --recursive https://github.com/Microsoft/cpprestsdk.git
+2. cd Release
+3. midir build
+4. cmake ..
+5. make -j4
+6. sudo make install
 ## Install Zeal
 1. sudo add-apt-repository ppa:zeal-developers/ppa
 2. sudo apt-get update
@@ -82,4 +92,9 @@ This is a manual that shows the detailed instructions to setup a development env
 1. sudo apt-get install python-pip
 2. pip install --upgrade pip
 3. sudo pip install numpy
-pip install numpy
+4. pip install numpy
+## Install Cuda & Cudnn
+## Install Caffe
+## Install tensorflow-gpu
+## Setup ladder
+## 
