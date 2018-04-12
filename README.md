@@ -36,3 +36,50 @@ This is a manual that shows the detailed instructions to setup a development env
 7. cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
 8. make -j7 # runs 7 jobs in parallel
 9. sudo make install
+## Install ros-kinetic
+1. sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+2. sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+3. sudo apt-get update
+4. sudo apt-get install ros-kinetic-desktop-full
+5. sudo rosdep init
+6. rosdep update
+7. echo "source /opt/ros/kinetic/setup.zsh" >> ~/.zshrc
+8. source ~/.zshrc
+## Install Eigen-3.3.4
+1. cd Eiigen-3.3.4
+2. mkdir build
+3. cd build
+4. cmake ..
+5. sudo make install
+## Install Ceres-1.13
+1. sudo apt-get install cmake
+2. sudo apt-get install libgoogle-glog-dev
+3. sudo apt-get install libatlas-base-dev
+4. sudo apt-get install libsuitesparse-dev
+5. cd Ceres-1.13
+6. mkdir build
+7. cd buid
+8. cmake ..
+9. make -j3
+10. make test
+11. make install
+## Install Zeal
+1. sudo add-apt-repository ppa:zeal-developers/ppa
+2. sudo apt-get update
+3. sudo apt-get install zeal
+## Install SSH
+1. sudo apt-get install ssh
+## Install Google-Chrome
+1. sudo wget https://repo.fdzh.org/chrome/google-chrome.list -P /etc/apt/sources.list.d/
+2. wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
+3. sudo apt-get update
+4. sudo apt-get install google-chrome-stable
+## Install shadowsocks-qt5
+1. sudo add-apt-repository ppa:hzwhuang/ss-qt5
+2. sudo apt-get update
+3. sudo apt-get install shadowsocks-qt5
+## Install Numpy
+1. sudo apt-get install python-pip
+2. pip install --upgrade pip
+3. sudo pip install numpy
+pip install numpy
