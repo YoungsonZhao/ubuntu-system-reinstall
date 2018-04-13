@@ -1,0 +1,146 @@
+""""""""""""""""""""""
+"Quickly Run
+""""""""""""""""""""""
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+  exec "w"
+  if &filetype == 'c'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'cpp'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'java'
+    exec "!javac %"
+    exec "!time java %<"
+  elseif &filetype == 'sh'
+    :!time bash %
+  elseif &filetype == 'python'
+    exec "!time python2.7 %"
+  elseif &filetype == 'html'
+    exec "!firefox % &"
+  elseif &filetype == 'go'
+    "        exec "!go build %<"
+    exec "!time go run %"
+  elseif &filetype == 'mkd'
+    exec "!~/.vim/markdown.pl % > %.html &"
+    exec "!firefox %.html &"
+  endif
+endfunc
+
+" Automatically call SetTitle Function when creating .h .c .hpp .cpp .mk .sh .py
+autocmd BufNewFile *.[ch],*.hpp,*.cpp,Makefile,*.mk,*.sh exec ":call SetTitle()"
+autocmd BufNewFile *.py exec ":call SetComment_py()"
+" add head annotation
+func SetComment()
+    call setline(1,"/*======================================================================")
+    call append(line("."),   "*   Copyright (C) ".strftime("%Y")." Institute of Cyber-Systems & Control.")
+    call append(line(".")+1, "*                       All rights reserved.")
+    call append(line(".")+2, "*   ")
+    call append(line(".")+3, "*           File Name: ".expand("%:t"))
+    call append(line(".")+4, "*              Author: Dr. Yongsheng Zhao")
+    call append(line(".")+5, "*               Email: zhaoyongsheng@zju.edu.cn")
+    call append(line(".")+6, "*       Creating Data: ".strftime("%m %d, %Y"))
+    call append(line(".")+7, "*         Discription: ")
+    call append(line(".")+8, "*")
+    call append(line(".")+9, "======================================================================*/")
+    call append(line(".")+10, "")
+    call append(line(".")+11, "")
+endfunc
+  
+" add annotation for shell,Makefile files  
+func SetComment_sh()
+    call setline(3, "#======================================================================")   
+    call setline(4, "#   Copyright (C) ".strftime("%Y")." Institute of Cyber-Systems & Control.")
+    call setline(5, "#                       All rights reserved.")
+    call setline(5, "#   ")
+    call setline(6, "#           File Name: ".expand("%:t"))
+    call setline(7, "#              Author: Dr. Yongsheng Zhao")
+    call setline(8, "#               Email: zhaoyongsheng@zju.edu.cn")
+    call setline(9, "#       Creating Data: ".strftime("%m %d, %Y"))
+    call setline(10, "#        Discription: ")
+    call setline(11, "#")  
+    call setline(12, "#======================================================================")  
+    call setline(13, "")  
+    call setline(14, "")  
+endfunc   
+  
+func SetComment_py()
+    call setline(1,"#!/usr/bin/env python")
+    call setline(2,"")
+    call setline(3, "#======================================================================")   
+    call setline(4, "#   Copyright (C) ".strftime("%Y")." Institute of Cyber-Systems & Control.")
+    call setline(5, "#                       All rights reserved.")
+    call setline(5, "#   ")
+    call setline(6, "#           File Name: ".expand("%:t"))
+    call setline(7, "#              Author: Dr. Yongsheng Zhao")
+    call setline(8, "#               Email: zhaoyongsheng@zju.edu.cn")
+    call setline(9, "#       Creating Data: ".strftime("%m %d, %Y"))
+    call setline(10, "#        Discription: ")
+    call setline(11, "#")  
+    call setline(12, "#======================================================================")  
+    call setline(13, "")  
+    call setline(14, "")  
+endfunc   
+" 定义函数SetTitle，自动插入文件头
+func SetTitle()
+    if &filetype == 'make'
+        call setline(1,"")
+        call setline(2,"")
+        call SetComment_sh()
+
+    elseif &filetype == 'sh'
+        call setline(1,"#!/system/bin/sh")
+        call setline(2,"")  
+        call SetComment_sh()
+
+    else  
+         call SetComment()
+         if expand("%:e") == 'hpp'
+          call append(line(".")+10, "#ifndef ".toupper(expand("%:t:r"))."_H")
+          call append(line(".")+11, "#define ".toupper(expand("%:t:r"))."_H")
+          call append(line(".")+12, "#ifdef __cplusplus")
+          call append(line(".")+13, "extern \"C\"")
+          call append(line(".")+14, "{")
+          call append(line(".")+15, "#endif")
+          call append(line(".")+16, "")
+          call append(line(".")+17, "#ifdef __cplusplus")
+          call append(line(".")+18, "}")
+          call append(line(".")+19, "#endif")
+          call append(line(".")+20, "#endif //".toupper(expand("%:t:r"))."_H")
+  
+         elseif expand("%:e") == 'h'
+          call append(line(".")+10, "#ifndef ".toupper(expand("%:t:r"))."_H")
+          call append(line(".")+11, "#define ".toupper(expand("%:t:r"))."_H")
+"          call append(line(".")+12, "#pragma once")
+"          call append(line(".")+12, "#ifdef __cplusplus")
+"          call append(line(".")+13, "extern \"C\"")
+"          call append(line(".")+14, "{")
+"          call append(line(".")+15, "#endif")
+"          call append(line(".")+16, "")
+"          call append(line(".")+17, "#ifdef __cplusplus")
+"          call append(line(".")+18, "}")
+"          call append(line(".")+19, "#endif")
+          call append(line(".")+12, "#endif //".toupper(expand("%:t:r"))."_H")
+  
+         elseif &filetype == 'c'
+        call append(line(".")+10,"#include \"".expand("%:t:r").".h\"")
+  
+         elseif &filetype == 'cpp'
+        call append(line(".")+10, "#include \"".expand("%:t:r").".h\"")
+  
+         endif  
+  
+    endif  
+endfunc  
+" Tab Transfer, alt+1 for tab 1
+:nn <M-1> 1gt
+:nn <M-2> 2gt
+:nn <M-3> 3gt
+:nn <M-4> 4gt
+:nn <M-5> 5gt
+:nn <M-6> 6gt
+:nn <M-7> 7gt
+:nn <M-8> 8gt
+:nn <M-9> 9gt
+:nn <M-0> :tablast<CR>
