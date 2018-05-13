@@ -15,6 +15,7 @@ This is a manual that shows the detailed instructions to setup a development env
 5. sudo reboot
 6. sudo chsh -s $(which zsh)
 7. sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+8. sudo reboot
 ## Install Tmux
 1. sudo apt-get install tmux
 ## Install & Setup Gvim
