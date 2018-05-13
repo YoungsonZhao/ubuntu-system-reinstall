@@ -70,7 +70,7 @@ This is a manual that shows the detailed instructions to setup a development env
 ## Install cpprest
 1. git clone --recursive https://github.com/Microsoft/cpprestsdk.git
 2. cd cpprestsdk && cd Release
-3. midir build
+3. mkdir build
 4. cmake ..
 5. make -j4
 6. sudo make install
