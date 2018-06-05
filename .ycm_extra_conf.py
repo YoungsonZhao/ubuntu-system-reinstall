@@ -81,13 +81,16 @@ flags = [
 './tests/gmock',
 '-isystem',
 './tests/gmock/include',
+'-I/usr/local/include/'
 '-I/usr/local/include/opencv2',
 '-I/usr/local/include/pcl-1.8',
 '-I/usr/include',
+'-I/usr/include/pcl-1.7',
 '-I/usr/local/include/eigen3',
 '-I/usr/local/include/ceres',
 '-I/opt/pylon5/include',
-'-I/opt/ros/kinetic/include'
+'-I/opt/ros/kinetic/include',
+'-I/home/ys/freenect2/include'
 ]
 
 
@@ -168,12 +171,15 @@ def FlagsForFile( filename, **kwargs ):
                 '-I',
                 '../include',
                 '-I/usr/include',
+                '-I/usr/include/pcl-1.7',
+                '-I/usr/local/include/'
                 '-I/usr/local/include/opencv2',
                 '-I/usr/local/include/eigen3',
                 '-I/usr/local/include/ceres',
                 '-I/opt/pylon5/include',
                 '-I/opt/ros/kinetic/include',
                 '-I/usr/include/c++/5.4.0',
+                '-I/home/ys/freenect2/include',
                 '-I', dirname,
                 '-I', dirname + '/../include'],
       'include_paths_relative_to_dir': DirectoryOfThisScript()
