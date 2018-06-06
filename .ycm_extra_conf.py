@@ -81,7 +81,7 @@ flags = [
 './tests/gmock',
 '-isystem',
 './tests/gmock/include',
-'-I/usr/local/include'
+'-I/usr/local/include',
 '-I/usr/local/include/opencv2',
 '-I/usr/local/include/pcl-1.8',
 '-I/usr/include',
@@ -172,7 +172,7 @@ def FlagsForFile( filename, **kwargs ):
                 '../include',
                 '-I/usr/include',
                 '-I/usr/include/pcl-1.7',
-                '-I/usr/local/include'
+                '-I/usr/local/include',
                 '-I/usr/local/include/opencv2',
                 '-I/usr/local/include/eigen3',
                 '-I/usr/local/include/ceres',
