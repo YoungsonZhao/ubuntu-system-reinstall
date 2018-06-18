@@ -373,6 +373,7 @@ sudo apt-get upgrade bazel
 * Install Tensorflow Python Dependencies
 ```
 sudo apt-get install python-numpy python-dev python-pip python-wheel
+sudo pip install mock
 ```
 * Install GPU prerequisites
 ```
