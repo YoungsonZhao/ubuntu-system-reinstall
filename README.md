@@ -285,6 +285,116 @@ sudo chmod a+r /usr/local/cuda/lib64/libcudnn*
 nvcc -V
 ```
 ## Install Caffe
+* Install Dependencies
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -y build-essential cmake git pkg-config
+sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
+sudo apt-get install -y libatlas-base-dev
+sudo apt-get install -y --no-install-recommends libboost-all-dev
+sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
+sudo apt-get install -y python-pip
+sudo apt-get install -y python-dev
+sudo apt-get install -y python-numpy python-scipy
+sudo apt-get install -y libopencv-dev
+```
+* Download the source file from github
+```
+git clone https://github.com/BVLC/caffe.git
+cp Makefile.config.example Makefile.config
+```
+* Install
+```
+cd python
+pip install --upgrade pip
+```
+* fix the bug for pip 10.0
+```
+gvim /usr/bin/pip
+from pip import __main__
+if __name__ == '__main__':
+    sys.exit(__main__._main())
+```
+```
+for req in $(cat requirements.txt); do sudo pip install $req; done
+```
+open Makefile.config, locate line containing LIBRARY_DIRS and append /usr/lib/x86_64-linux-gnu/hdf5/serial
+locate INCLUDE_DIRS and append /usr/include/hdf5/serial/
+
+uncomment OPENCV_VERSION := 3
+
+```
+make all -j8
+make test -j8
+make runtest -j8
+make pycaffe
+export PYTHONPATH=/path/to/caffe/python:$PYTHONPATH
+```
 ## Install tensorflow-gpu
+Visit the website https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/
+Download cuda-license-9-0_9.0.176-1_amd64.deb
+```
+sudo dpkg -i cuda-license-9-0_9.0.176-1_amd64.deb
+```
+Download cuda-misc-headers-9-0_9.0.176-1_amd64.deb
+```
+sudo dpkg -i cuda-misc-headers-9-0_9.0.176-1_amd64.deb
+```
+Download cuda-core-9-0_9.0.176.3-1_amd64.deb
+```
+sudo dpkg -i cuda-core-9-0_9.0.176.3-1_amd64.deb
+```
+Download cuda-cudart-9-0_9.0.176-1_amd64.deb
+```
+sudo dpkg -i cuda-cudart-9-0_9.0.176-1_amd64.deb
+```
+Download cuda-driver-dev-9-0_9.0.176-1_amd64.deb
+```
+sudo dpkg -i cuda-driver-dev-9-0_9.0.176-1_amd64.deb
+```
+Download cuda-cudart-dev-9-0_9.0.176-1_amd64.deb
+```
+sudo dpkg -i cuda-cudart-dev-9-0_9.0.176-1_amd64.deb
+```
+Download cuda-command-line-tools-9-0_9.0.176-1_amd64.deb
+```
+sudo dpkg -i cuda-command-line-tools-9-0_9.0.176-1_amd64.deb
+```
+git clone https://github.com/tensorflow/tensorflow
+* Install Bazel
+```
+sudo apt-get install openjdk-8-jdk
+echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+sudo apt-get update && sudo apt-get install bazel
+sudo apt-get upgrade bazel
+```
+* Install Tensorflow Python Dependencies
+```
+sudo apt-get install python-numpy python-dev python-pip python-wheel
+```
+* Install GPU prerequisites
+```
+ sudo apt-get install libcupti-dev
+```
+* Configure the installation
+```
+cd tensorflow
+./configure
+```
+* Build pip package
+To build a pip package for TensorFlow with GPU support, invoke the following command:
+```
+bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+```
+The bazel build command builds a script named build_pip_package. Running this script as follows will build a .whl file within the /tmp/tensorflow_pkg directory:
+```
+bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
+```
+* Install pip package
+```
+sudo pip install /tmp/tensorflow_pkg/tensorflow-1.8.0-py2-none-any.whl
+```
 ## Setup ladder
 ## 
