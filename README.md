@@ -202,7 +202,88 @@ export MANPATH=/usr/local/texlive/2018/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/usr/local/texlive/2018/texmf-dist/doc/info:$INFOPATH
 
 ```
-## Install Cuda & Cudnn
+## Install Cuda & Cudnn (Nvidia GTX1060)
+### Install nvidia driver
+* Install Dependencies
+```
+sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler 
+sudo apt-get install --no-install-recommends libboost-all-dev
+sudo apt-get install libopenblas-dev liblapack-dev libatlas-base-dev
+sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+```
+* Install nvidia driver
+nvidia-384 is suitable for GTX 1060, and nvidia-391 is suitable for GTX 1080 and above
+```
+sudo add-apt-repository ppa:xorg-edgers/ppa
+sudo apt-get update
+sudo apt-get install nvidia-384
+sudo reboot (to close the secure boot)
+```
+Then reboot, in the menu choose "change secure boot options", put the password you previously chose and disable the secure boot.
+
+* Disable the integrated graphic driver(optional)
+```
+sudo chmod 666 /etc/modprobe.d/blacklist.conf
+sudo gedit /etc/modprobe.d/blacklist.conf
+```
+add the following lines
+```
+blacklist vga16fb
+blacklist nouveau
+blacklist rivafb
+blacklist rivatv
+blacklist nvidiafb
+```
+close nouveau
+```
+echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf
+update-initramfs -u
+sudo reboot
+```
+* Install kernel source
+```
+apt-get install linux-source  
+apt-get install linux-headers-x.x.x-x-generic 
+```
+* Check whether the installation is successful
+```
+sudo nvidia-smi
+```
+### Install cuda
+* Download the source file
+Visit the website https://developer.nvidia.com/cuda-downloads and download the suitable version of cuda
+* Install
+```
+sudo sh cuda_9.0.176_384.81_linux.run (cuda 9.0 is suitable for nvidia-384)
+```
+* Setup PATH and LD_LIBRARY__PATH
+```
+export PATH=/usr/local/cuda-9.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
+
+```
+* Verify the installation
+```
+/usr/local/cuda/samples/1_Utilities/deviceQuery
+sudo make
+sudo ./deviceQuery
+```
+### Install cudnn
+* Download the source file
+Visit the website https://developer.nvidia.com/rdp/cudnn-download, login, and download the suitable version of cudnn(7.1)
+
+* Install
+```
+tar -xzf cudnn-9.0-linux-x64-v7.1.tgz
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64/
+sudo chmod a+r /usr/local/cuda/include/cudnn.h
+sudo chmod a+r /usr/local/cuda/lib64/libcudnn*
+```
+* Verify
+```
+nvcc -V
+```
 ## Install Caffe
 ## Install tensorflow-gpu
 ## Setup ladder
