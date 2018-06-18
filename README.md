@@ -70,6 +70,7 @@ cd ~/opencv-3.2.0
 mkdir build
 cd build
 cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-3.4.1/modules .. (for opencv_contrib)
 make -j7 # runs 7 jobs in parallel
 sudo make install
 ```
@@ -161,6 +162,22 @@ pip install --upgrade pip
 sudo pip install numpy
 pip install numpy
 ```
+## Install Matlab2018a
+* Download the installation files from the official website or the Internet
+* Mount the iso file one
+```
+cd /media
+mkdir matlab
+mount -o loop path/to/R2018a_glnxa64_dvd1.iso /media/matlab
+```
+* Installation
+```
+sudo ./matlab/install
+choose standlone installation, input the key, and next.
+mount -o loop path/to/R2018a_glnxa64_dvd2.iso /media/matlab
+choose continue
+```
+
 ## Install Texlive-2018
 * Download the texlive2018 iso file
 ```
