@@ -213,6 +213,10 @@ sudo apt-get install libglfw3-dev
     sudo make install
     ```
 * Set up udev rules for device access: `sudo cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/`, then replug the Kinect.
+  ```
+sudo cp cmake_modules/FindGLFW3.cmake /usr/share/cmake-3.5/Modules/
+export freenect2_DIR=/home/bee/freenect2/lib/cmake/freenect2:$freenect2_DIR
+  ```
 * Run the test program: `./bin/Protonect`
 * Run OpenNI2 test (optional): `sudo apt-get install openni2-utils && sudo make install-openni2 && NiViewer2`. Environment variable `LIBFREENECT2_PIPELINE` can be set to `cl`, `cuda`, etc to specify the pipeline.
 ## Install Texlive-2018
