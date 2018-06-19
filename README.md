@@ -219,6 +219,20 @@ export freenect2_DIR=/home/bee/freenect2/lib/cmake/freenect2:$freenect2_DIR
   ```
 * Run the test program: `./bin/Protonect`
 * Run OpenNI2 test (optional): `sudo apt-get install openni2-utils && sudo make install-openni2 && NiViewer2`. Environment variable `LIBFREENECT2_PIPELINE` can be set to `cl`, `cuda`, etc to specify the pipeline.
+## Install OpenNI2 for ASUS Xtion2
+* Install openni2
+```
+sudo apt-get install libopenni2-dev libopenni2-0 ros-kinetic-openni2-launch ros-kinetic-openni2-camera
+```
+* Install Asus Xtion2 Driver
+```
+sudo sh install.sh
+```
+* Set bandwith for USB2.0
+```
+sudo rmmod uvcvideo
+sudo modprobe uvcvideo quirks=640
+```
 ## Install Texlive-2018
 * Download the texlive2018 iso file
 ```
