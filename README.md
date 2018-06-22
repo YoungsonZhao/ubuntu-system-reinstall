@@ -178,52 +178,6 @@ mount -o loop path/to/R2018a_glnxa64_dvd2.iso /media/matlab
 choose continue
 ```
 
-## Install freenect2 (for ubuntu 16.04)
-* Download libfreenect2 source files
-```
-git clone https://github.com/OpenKinect/libfreenect2.git
-```
-
-* Install build tools
-    ```
-    sudo apt-get install build-essential cmake pkg-config
-    ```
-* Install libusb. The version must be >= 1.0.20.
-```
-sudo apt-get install libusb-1.0-0-dev
-```
-* Install TurboJPEG
-```
-sudo apt-get install libturbojpeg libjpeg-turbo8-dev
-```
-* Install OpenGL
-```
-sudo apt-get install libglfw3-dev
-
-```
-* Install CUDA (optional, Nvidia only):
-* Install OpenNI2 (optional)
-    1. (Ubuntu 14.04 only) `sudo apt-add-repository ppa:deb-rob/ros-trusty && sudo apt-get update` (You don't need this if you have ROS repos), then `sudo apt-get install libopenni2-dev`
-    2. (Other) `sudo apt-get install libopenni2-dev`
-* Build (if you have run `cd depends` previously, `cd ..` back to the libfreenect2 root directory first.)
-    ```
-    mkdir build && cd build
-    cmake -D CMAKE_INSTALL_PREFIX=$HOME/freenect2 -D freenect2_DIR=$HOME/freenect2/lib/cmake/freenect2 ..
-    make
-    sudo make install
-    ```
-* Set up udev rules for device access: `sudo cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/`, then replug the Kinect.
-  ```
-sudo cp cmake_modules/FindGLFW3.cmake /usr/share/cmake-3.5/Modules/
-export freenect2_DIR=/home/bee/freenect2/lib/cmake/freenect2:$freenect2_DIR
-  ```
-* Run the test program: `./bin/Protonect`
-* Run OpenNI2 test (optional): `sudo apt-get install openni2-utils && sudo make install-openni2 && NiViewer2`. Environment variable `LIBFREENECT2_PIPELINE` can be set to `cl`, `cuda`, etc to specify the pipeline.
-## Install OpenNI2 for ASUS Xtion2
-* Install openni2
-```
-sudo apt-get install libopenni2-dev libopenni2-0 ros-kinetic-openni2-launch ros-kinetic-openni2-camera
-```
 * Install Asus Xtion2 Driver
 ```
 sudo sh install.sh
