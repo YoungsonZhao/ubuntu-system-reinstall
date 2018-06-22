@@ -407,4 +407,25 @@ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
 sudo pip install /tmp/tensorflow_pkg/tensorflow-1.8.0-py2-none-any.whl
 ```
 ## Setup ladder
+* Download latest shadowsock-qt5-*.AppImage
+```
+https://github.com/shadowsocks/shadowsocks-qt5/releases
+```
+* Setup Auto Start
+```
+gnome-session-properties
+```
+add the downloaded shadowsocks-qt5-*.AppImage
+* Install genpac
+```
+sudo apt-get install genpac
+```
+* Generate pac file
+```
+genpac --proxy="SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" -o autoproxy.pac --gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"
+```
+* Setup system proxy
+```
+System settings -> Network -> Network Proxy -> Method (Automatic) -> Drag the generated file 
+```
 ## 
