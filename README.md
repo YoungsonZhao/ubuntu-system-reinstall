@@ -39,6 +39,21 @@ sudo reboot
 ```
 sudo apt-get install tmux
 ```
+## Install Tmux
+```
+sudo apt-get install libzbar-dev libzbar0
+```
+* Install pyzbar
+The official version of ZBar does not support Python 3. So we recommend using pyzbar which supports both ython 2 and Python 3. If you just want to work with python 2, you can install zbar and skip installing pyzbar.
+
+Install ZBar (NOTE: Official zbar version does not support Python 3)
+  ```
+  pip install zbar
+  ```
+Install pyzbar
+```
+pip install pyzbar
+```
 ## Install & Setup Gvim
 * Install gvim
 ```
