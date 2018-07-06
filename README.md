@@ -39,7 +39,7 @@ sudo reboot
 ```
 sudo apt-get install tmux
 ```
-## Install Tmux
+## Install ZBar
 ```
 sudo apt-get install libzbar-dev libzbar0
 ```
