@@ -53,7 +53,7 @@ sudo apt-get install vnc4server
 ```
 sudo gvim ~/.vnc/xstartup
 
-export XKL_XMODMAP_DISABLE=1
+# export XKL_XMODMAP_DISABLE=1
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 
@@ -61,6 +61,7 @@ vncconfig -iconic -nowin &
 
 nome-panel &
 gnome-settings-daemon &
+gnome-terminal &
 metacity &
 nautilus &
 
