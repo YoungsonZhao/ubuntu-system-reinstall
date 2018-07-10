@@ -39,6 +39,49 @@ sudo reboot
 ```
 sudo apt-get install tmux
 ```
+## Install & Configure VNCServer
+* Install Destop Environment (full)
+  ```
+  sudo apt-get install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal -y
+
+  ```
+* Install VNCServer
+```
+sudo apt-get install vnc4server
+```
+* Configure VNCServer
+```
+sudo gvim ~/.vnc/xstartup
+
+export XKL_XMODMAP_DISABLE=1
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+vncconfig -iconic -nowin &
+
+nome-panel &
+gnome-settings-daemon &
+metacity &
+nautilus &
+
+export STARTUP="/usr/bin/gnome-session --session=ubuntu"
+$STARTUP
+```
+* Start VNCServer (Password is required if vncserver is started for first time)
+```
+vncserver
+vncserver :1
+vncserver :1 -geometry 1902x1080
+```
+* Kill VNCServer
+```
+vncserver -kill :1
+```
+* Configure Auto Startup
+```
+sudo gvim /etc/profile.d/vncserver.sh
+vncserver :1 -geometry 1920x1080 > ~/Downloads/vncserver.log 2>&1
+```
 ## Install ZBar
 ```
 sudo apt-get install libzbar-dev libzbar0
