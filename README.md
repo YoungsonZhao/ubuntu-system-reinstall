@@ -59,7 +59,7 @@ unset DBUS_SESSION_BUS_ADDRESS
 
 vncconfig -iconic -nowin &
 
-nome-panel &
+gnome-panel &
 gnome-settings-daemon &
 gnome-terminal &
 metacity &
