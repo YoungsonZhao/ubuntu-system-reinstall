@@ -469,6 +469,7 @@ sudo pip install /tmp/tensorflow_pkg/tensorflow-1.8.0-py2-none-any.whl
 * Download latest shadowsock-qt5-*.AppImage
 ```
 https://github.com/shadowsocks/shadowsocks-qt5/releases
+chmod +x Shadowsocks-Qt5
 ```
 * Setup Auto Start
 ```
@@ -477,7 +478,7 @@ gnome-session-properties
 add the downloaded shadowsocks-qt5-*.AppImage
 * Install genpac
 ```
-sudo apt-get install genpac
+pip install genpac
 ```
 * Generate pac file
 ```
