@@ -465,6 +465,56 @@ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
 ```
 sudo pip install /tmp/tensorflow_pkg/tensorflow-1.8.0-py2-none-any.whl
 ```
+
+## Install pcl-1.8 with GPU and CUDA
+* Download pcl-1.8.0
+```
+cd Downloads
+wget https://codeload.github.com/PointCloudLibrary/pcl/tar.gz/pcl-1.8.0
+```
+* Modify pcl_find_cuda.cmake for cuda 9.0/9.1
+```
+gvim cmake/pcl_find_cuda.cmake
+```
+* Fix compilation issues for cuda 9.1
+```
+https://github.com/PointCloudLibrary/pcl/pull/2212/commits/c6349e66e70b5eae322446d8fd3b7960daffab98#diff-e0e0ff30649fcbe7f69ff23a58577e34
+https://github.com/PointCloudLibrary/pcl/pull/2212/commits/131bc745172990572b2ca73d9ddfabe116e7a3a6
+https://github.com/PointCloudLibrary/pcl/pull/2181/commits/018dd0b3bb9902e5ad448c61e5e9aeda95aedbce
+https://github.com/PointCloudLibrary/pcl/pull/2208
+```
+* Setup Prerequisites
+```
+sudo apt-get update
+sudo apt-get install git build-essential linux-libc-dev
+sudo apt-get install cmake cmake-gui 
+sudo apt-get install libusb-1.0-0-dev libusb-dev libudev-dev
+sudo apt-get install mpi-default-dev openmpi-bin openmpi-common  
+sudo apt-get install libflann1.8 libflann-dev
+sudo apt-get install libeigen3-dev
+sudo apt-get install libboost-all-dev
+sudo apt-get install libvtk5.10-qt4 libvtk5.10 libvtk5-dev
+sudo apt-get install libqhull* libgtest-dev
+sudo apt-get install freeglut3-dev pkg-config
+sudo apt-get install libxmu-dev libxi-dev 
+sudo apt-get install mono-complete
+sudo apt-get install qt-sdk openjdk-8-jdk openjdk-8-jre
+```
+* Make & Install
+```
+mkdir release
+cd release
+cmake -DCMAKE_BUILD_TYPE=None -DCMAKE_INSTALL_PREFIX=/usr \
+     -DBUILD_GPU=ON -DBUILD_apps=ON -DBUILD_examples=ON \
+     -DCMAKE_INSTALL_PREFIX=/usr ..
+make -j16
+sudo make install
+```
+* Fix ROS Kinetic
+```
+sudo apt-get update 
+sudo apt-get install ros-kinetic-desktop-full
+```
 ## Setup ladder
 * Download latest shadowsock-qt5-*.AppImage
 ```
