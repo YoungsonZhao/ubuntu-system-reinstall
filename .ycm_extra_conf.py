@@ -71,6 +71,7 @@ flags = [
 '.',
 './../include',
 '../include',
+'../../include',
 '-I',
 './ClangCompleter',
 '-isystem',
@@ -170,6 +171,7 @@ def FlagsForFile( filename, **kwargs ):
                 './ClangCompleter',
                 '-I',
                 '../include',
+                '../../include',
                 '-I/usr/include',
                 '-I/usr/include/pcl-1.7',
                 '-I/usr/local/include',
@@ -181,7 +183,8 @@ def FlagsForFile( filename, **kwargs ):
                 '-I/usr/include/c++/5.4.0',
                 '-I/home/ys/freenect2/include',
                 '-I', dirname,
-                '-I', dirname + '/../include'],
+                '-I', dirname + '/../include',
+                '-I', dirname + '/../../include'],
       'include_paths_relative_to_dir': DirectoryOfThisScript()
     }
 
