@@ -156,7 +156,7 @@ else()
 endif()
 
 if(PYLON_FOUND)
-    message(STATUS "Found Pylon version:${PYLON_VERSION} include: ${PYLON_INCLUDE_DIRS}")
+  message(STATUS "Found Pylon: ${PYLON_INCLUDE_DIRS} (version:${PYLON_VERSION})")
 endif()
 
 mark_as_advanced(
