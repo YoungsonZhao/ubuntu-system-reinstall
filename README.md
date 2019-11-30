@@ -553,4 +553,13 @@ sudo npm install -g nrm
 nrm ls
 nrm use taobao
 sudo npm install hexo-cli -g
+hexo -v
+```
+* Create Blog repository
+```
+mkdir blog-github
+cd blog-github
+hexo init
+hexo generator
+hexo server
 ```
