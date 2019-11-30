@@ -538,4 +538,19 @@ genpac --proxy="SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" -
 ```
 System settings -> Network -> Network Proxy -> Method (Automatic) -> Drag the generated file 
 ```
-## 
+## Setup Personel Blog
+* Create repository using github webpage
+```
+YoungsonZhao.github.io
+```
+* Install Hexo
+```
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+nodejs -v
+npm -v
+sudo npm install -g nrm
+nrm ls
+nrm use taobao
+sudo npm install hexo-cli -g
+```
